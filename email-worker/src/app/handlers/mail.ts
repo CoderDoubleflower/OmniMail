@@ -222,15 +222,17 @@ export async function receiveEmail(message: ForwardableEmailMessage, env: Env): 
     }
 
     await env.MAIL_QUEUE.send({ kind: 'parse', messageId: id })
+    
     const gmail = env.GMAIL_FORWARD_TO?.trim()
-
-    if (gmail && message.canBeForwarded) {
+    
+    if (gmail) {
       try {
         await message.forward(gmail)
       } catch (error) {
         console.error('Forward to Gmail failed:', error)
       }
     }
+
   } catch (error) {
     if (inserted) {
       await env.DB.prepare(
