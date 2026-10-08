@@ -132,6 +132,7 @@ export interface Env {
   UPDATE_REPOSITORY?: string
   D1_DATABASE_ID?: string
   D1_REST_API_TOKEN?: string
+  GMAIL_FORWARD_TO?: string
 }
 
 export type UserRole = 'super_admin' | 'admin' | 'user' | 'temporary'
